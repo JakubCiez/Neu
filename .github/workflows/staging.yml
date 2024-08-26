@@ -1,0 +1,36 @@
+name: Run Tests on Staging Branch
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        submodules: true  # Stellt sicher, dass Submodule auch ausgecheckt werden
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install pip
+      run: |
+        python -m ensurepip
+        python -m pip install --upgrade pip
+
+    - name: Install Dependencies
+      run: |
+        cd AbschlussprojektCloud2023/backend-server
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        cd AbschlussprojektCloud2023/backend-server
+        python -m unittest discover -s tests

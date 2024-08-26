@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./AbschlussprojektCloud2023/backend-server
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./AbschlussprojektCloud2023/backend-server/.env
+    depends_on:
+      - mongo
+
+  website:
+    build: ./AbschlussprojektCloud2023/website
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./AbschlussprojektCloud2023/website/.env
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: jakubciezadlik
+      MONGO_INITDB_ROOT_PASSWORD: i5BKcrqKTJOJilEd
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
