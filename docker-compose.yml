@@ -2,20 +2,20 @@ version: '3.8'
 
 services:
   backend:
-    build: ./AbschlussprojektCloud2023/backend-server
+    build: ./backend-server
     ports:
       - "5000:5000"
     env_file:
-      - ./AbschlussprojektCloud2023/backend-server/.env
+      - ./backend-server/.env
     depends_on:
       - mongo
 
   website:
-    build: ./AbschlussprojektCloud2023/website
+    build: ./website
     ports:
       - "3000:3000"
     env_file:
-      - ./AbschlussprojektCloud2023/website/.env
+      - ./website/.env
     depends_on:
       - backend
 
