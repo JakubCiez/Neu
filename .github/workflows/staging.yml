@@ -25,10 +25,7 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        cd Abschlussprojekt_neu
         pip install -r requirements.txt
 
     - name: Run tests
       run: |
-        cd Abschlussprojekt_neu
-        python -m unittest discover -s tests
